@@ -1,17 +1,41 @@
 ﻿// declare local variables
 Random rand = new Random();
-
-int winningNumber = rand.Next(0, 100);
-
+int selectedLevel;
+int winningNumber;
+int guessNumber;
 bool hasWon = false;
+bool levelValid = false;
 
-// allow user to guess until the get it right
+
+// user selects level of difficulty
 do
 {
-    Console.Write("Guess a number between 0 and 100: ");
+    Console.Write("Select Your Level of Difficulty: ");
+    string readLevel = Console.ReadLine();
+
+    selectedLevel = int.Parse(readLevel);
+
+    if (selectedLevel > 0 && selectedLevel <= 10)
+    {
+        Console.WriteLine($"You have selected level {selectedLevel} difficulty.");
+        levelValid = true;
+    }
+
+    Console.WriteLine();
+} while (levelValid == false);
+
+// determine guessing range and select winning number
+int maxRange = selectedLevel * 10;
+winningNumber = rand.Next(0, maxRange);
+
+
+// prompt user to guess until they are correct
+do
+{
+    Console.Write($"Guess a number between 0 and {maxRange}: ");
     string readResult = Console.ReadLine();
 
-    int guessNumber = int.Parse(readResult);
+    guessNumber = int.Parse(readResult);
 
     if (guessNumber > winningNumber)
         Console.WriteLine("Too high! Guess lower...");
@@ -23,7 +47,7 @@ do
         hasWon = true;
     }
 
-    Console.WriteLine();        
+    Console.WriteLine();
 } while (hasWon == false);
 
 Console.WriteLine("Thank you for playing this game.");
