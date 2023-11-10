@@ -2,6 +2,7 @@
 Random rand = new Random();
 int selectedLevel = 1;
 int winningNumber;
+int attempts = 0;
 
 bool retryTurn = false;
 
@@ -55,13 +56,15 @@ do
 
             if (resultValid)
             {
+                attempts += 1;
                 if (guessNumber > winningNumber)
-                    Console.WriteLine("Too high! Guess lower...");
+                    Console.Write("Too high! Guess lower...");
                 else if (guessNumber < winningNumber)
-                    Console.WriteLine("Too Low! Guess higher...");
+                    Console.Write("Too Low! Guess higher...");
                 else
                 {
                     Console.WriteLine("YOU WIN!!");
+                    Console.WriteLine($"You took {attempts} atempts to guess the winning number at Level {selectedLevel}");
                     hasWon = true;
                 }
             }
@@ -70,6 +73,7 @@ do
         else continue;
 
         Console.WriteLine();
+        
     } while (hasWon == false);
 
 
@@ -83,8 +87,8 @@ do
 
         if (!string.IsNullOrEmpty(confirmation))
         {
-            if (confirmation != "Y" || confirmation != "N") continue;
-            else validConfirmation = true;
+            if (confirmation == "Y" || confirmation == "N") validConfirmation = true;
+            else continue;
         }
         else continue;
 
