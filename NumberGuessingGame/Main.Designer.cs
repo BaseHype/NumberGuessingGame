@@ -119,6 +119,7 @@
             btnPlay.TabIndex = 6;
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = false;
+            btnPlay.Click += btnPlay_Click;
             // 
             // rtbScores
             // 
@@ -157,6 +158,7 @@
             btnNewGame.TabIndex = 11;
             btnNewGame.Text = "New Game";
             btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.Click += btnNewGame_Click;
             // 
             // btnSave
             // 
