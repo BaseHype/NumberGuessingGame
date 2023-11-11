@@ -122,10 +122,12 @@
             // 
             // rtbScores
             // 
+            rtbScores.BackColor = Color.White;
             rtbScores.BorderStyle = BorderStyle.FixedSingle;
             rtbScores.Location = new Point(15, 129);
             rtbScores.Name = "rtbScores";
             rtbScores.ReadOnly = true;
+            rtbScores.ScrollBars = RichTextBoxScrollBars.Vertical;
             rtbScores.Size = new Size(300, 90);
             rtbScores.TabIndex = 8;
             rtbScores.Text = "";
@@ -167,11 +169,13 @@
             // 
             // rtbOut
             // 
+            rtbOut.BackColor = Color.White;
             rtbOut.BorderStyle = BorderStyle.FixedSingle;
             rtbOut.Location = new Point(320, 10);
             rtbOut.Name = "rtbOut";
             rtbOut.ReadOnly = true;
-            rtbOut.Size = new Size(280, 209);
+            rtbOut.ScrollBars = RichTextBoxScrollBars.Vertical;
+            rtbOut.Size = new Size(280, 245);
             rtbOut.TabIndex = 13;
             rtbOut.Text = "";
             // 
@@ -194,6 +198,7 @@
             Controls.Add(nudLevel);
             Controls.Add(label1);
             Font = new Font("HP Simplified Hans", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+            MaximizeBox = false;
             Name = "Main";
             Text = "Guess Roulette";
             ((System.ComponentModel.ISupportInitialize)nudLevel).EndInit();
