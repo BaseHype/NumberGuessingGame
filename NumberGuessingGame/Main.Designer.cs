@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            nudLevel = new NumericUpDown();
             cbxSelected = new CheckBox();
             btnLevelSelect = new Button();
-            label2 = new Label();
-            textBox1 = new TextBox();
+            lblGuess = new Label();
+            txtGuess = new TextBox();
             btnPlay = new Button();
-            rtbOut = new RichTextBox();
+            rtbScores = new RichTextBox();
             label3 = new Label();
             lblAttempts = new Label();
             btnNewGame = new Button();
             btnSave = new Button();
-            richTextBox1 = new RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            rtbOut = new RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)nudLevel).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -54,22 +54,22 @@
             label1.TabIndex = 0;
             label1.Text = "Level:";
             // 
-            // numericUpDown1
+            // nudLevel
             // 
-            numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDown1.Location = new Point(100, 21);
-            numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(50, 22);
-            numericUpDown1.TabIndex = 1;
-            numericUpDown1.TextAlign = HorizontalAlignment.Right;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudLevel.BorderStyle = BorderStyle.FixedSingle;
+            nudLevel.Location = new Point(100, 21);
+            nudLevel.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudLevel.Name = "nudLevel";
+            nudLevel.Size = new Size(50, 22);
+            nudLevel.TabIndex = 1;
+            nudLevel.TextAlign = HorizontalAlignment.Right;
+            nudLevel.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cbxSelected
             // 
             cbxSelected.AutoSize = true;
-            cbxSelected.BackColor = Color.White;
+            cbxSelected.BackColor = SystemColors.Control;
             cbxSelected.Enabled = false;
             cbxSelected.Location = new Point(270, 25);
             cbxSelected.Name = "cbxSelected";
@@ -89,22 +89,23 @@
             btnLevelSelect.TabIndex = 3;
             btnLevelSelect.Text = "Select";
             btnLevelSelect.UseVisualStyleBackColor = false;
+            btnLevelSelect.Click += btnLevelSelect_Click;
             // 
-            // label2
+            // lblGuess
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(20, 60);
-            label2.Name = "label2";
-            label2.Size = new Size(44, 14);
-            label2.TabIndex = 4;
-            label2.Text = "Guess:";
+            lblGuess.AutoSize = true;
+            lblGuess.Location = new Point(20, 60);
+            lblGuess.Name = "lblGuess";
+            lblGuess.Size = new Size(44, 14);
+            lblGuess.TabIndex = 4;
+            lblGuess.Text = "Guess:";
             // 
-            // textBox1
+            // txtGuess
             // 
-            textBox1.Location = new Point(100, 56);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(55, 22);
-            textBox1.TabIndex = 5;
+            txtGuess.Location = new Point(100, 56);
+            txtGuess.Name = "txtGuess";
+            txtGuess.Size = new Size(55, 22);
+            txtGuess.TabIndex = 5;
             // 
             // btnPlay
             // 
@@ -119,14 +120,15 @@
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = false;
             // 
-            // rtbOut
+            // rtbScores
             // 
-            rtbOut.BorderStyle = BorderStyle.FixedSingle;
-            rtbOut.Location = new Point(15, 129);
-            rtbOut.Name = "rtbOut";
-            rtbOut.Size = new Size(300, 90);
-            rtbOut.TabIndex = 8;
-            rtbOut.Text = "";
+            rtbScores.BorderStyle = BorderStyle.FixedSingle;
+            rtbScores.Location = new Point(15, 129);
+            rtbScores.Name = "rtbScores";
+            rtbScores.ReadOnly = true;
+            rtbScores.Size = new Size(300, 90);
+            rtbScores.TabIndex = 8;
+            rtbScores.Text = "";
             // 
             // label3
             // 
@@ -163,37 +165,38 @@
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // rtbOut
             // 
-            richTextBox1.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox1.Location = new Point(320, 10);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(280, 209);
-            richTextBox1.TabIndex = 13;
-            richTextBox1.Text = "";
+            rtbOut.BorderStyle = BorderStyle.FixedSingle;
+            rtbOut.Location = new Point(320, 10);
+            rtbOut.Name = "rtbOut";
+            rtbOut.ReadOnly = true;
+            rtbOut.Size = new Size(280, 209);
+            rtbOut.TabIndex = 13;
+            rtbOut.Text = "";
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(609, 266);
-            Controls.Add(richTextBox1);
+            Controls.Add(rtbOut);
             Controls.Add(btnSave);
             Controls.Add(btnNewGame);
             Controls.Add(lblAttempts);
             Controls.Add(label3);
-            Controls.Add(rtbOut);
+            Controls.Add(rtbScores);
             Controls.Add(btnPlay);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
+            Controls.Add(txtGuess);
+            Controls.Add(lblGuess);
             Controls.Add(btnLevelSelect);
             Controls.Add(cbxSelected);
-            Controls.Add(numericUpDown1);
+            Controls.Add(nudLevel);
             Controls.Add(label1);
             Font = new Font("HP Simplified Hans", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Main";
             Text = "Guess Roulette";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudLevel).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -201,17 +204,17 @@
         #endregion
 
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown nudLevel;
         private CheckBox cbxSelected;
         private Button btnLevelSelect;
-        private Label label2;
-        private TextBox textBox1;
+        private Label lblGuess;
+        private TextBox txtGuess;
         private Button btnPlay;
-        private RichTextBox rtbOut;
+        private RichTextBox rtbScores;
         private Label label3;
         private Label lblAttempts;
         private Button btnNewGame;
         private Button btnSave;
-        private RichTextBox richTextBox1;
+        private RichTextBox rtbOut;
     }
 }
