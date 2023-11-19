@@ -19,16 +19,13 @@ namespace NumberGuessingGame
         int numOfAttempts = 0;
         bool hasWon = false;
 
+        int[] highScores = new [] {0,0,0,0,0,0,0,0,0,0};
+        static string folderDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GuessRoulette");
+        static string saveFile = Path.Combine(folderDirectory, "save.txt");
+
         public Main()
         {
             InitializeComponent();
-
-
-            // show the current high scores
-            /*rtbScores.Text = $"{this.Text} Highscore Board\n";
-            rtbScores.Text += "Difficulty Level\t\tScore\n";
-            rtbScores.Text += "------------------------------------\n";
-            */
 
             // display a welcome message and explaing the game
             rtbOut.Text = $"Welcome to {this.Text}\n";
@@ -146,6 +143,53 @@ namespace NumberGuessingGame
             }
         }
 
-        
+        private void DisplayHighscoreBoard()
+        {
+            rtbScores.Clear();
+
+            // show the current high scores
+            rtbScores.Text = $"{this.Text} Highscore Board\n";
+            rtbScores.Text += "Difficulty Level\t\tScore\n";
+            rtbScores.Text += "------------------------------------\n";
+
+            // display the highscores within the richtextbox scores
+            for (int i = 1; i <= highScores.Length; i++)
+            {
+                string levelFormat = $"Level {i}:";
+                if (highScores[i - 1] != 0)
+                    rtbScores.Text += $"{levelFormat.PadRight(45)} {highScores[i - 1]}\n";
+                else rtbScores.Text += $"{levelFormat.PadRight(45)} -\n";
+            }
+        }
+
+        private void ReadHighScoreFile()
+        {
+            using (StreamReader reader = new StreamReader(saveFile))
+            {
+                string? line;
+                int count = 0;
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    int index = line.IndexOf(':');
+
+                    if (index != -1)
+                        highScores[count] = int.Parse(line.Substring(index + 2, line.Length - index + 2));
+
+                    count++;
+                }
+            }
+        }
+
+        private void WriteHighScoreFile()
+        {
+            using (StreamWriter writer = new StreamWriter(saveFile))
+            {
+                writer.WriteLine("Guess Roulette High Scores");
+
+                for (int i = 0; i < highScores.Length; i++)
+                    writer.WriteLine($"Level {i+1}: {highScores[i]}");
+            }
+        }
     }
 }
