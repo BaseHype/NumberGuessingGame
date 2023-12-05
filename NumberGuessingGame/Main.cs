@@ -19,7 +19,7 @@ namespace NumberGuessingGame
         int numOfAttempts = 0;
         bool hasWon = false;
 
-        int[] highScores = new [] {0,0,0,0,0,0,0,0,0,0};
+        int[] highScores = new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         static string folderDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GuessRoulette");
         static string saveFile = Path.Combine(folderDirectory, "save.txt");
 
@@ -35,6 +35,19 @@ namespace NumberGuessingGame
             rtbOut.Text += " -When guessing the user will be prompted whether their guess is high or low\n";
             rtbOut.Text += " -The aim is to guess the winning number is the least amount of attempts\n";
             rtbOut.Text += "\nAll the best! Hope you enjoy the game!\n";
+
+            // check to see if save folder exists
+            if (!Directory.Exists(folderDirectory))
+                Directory.CreateDirectory(folderDirectory);
+
+            // check to see if the save file exists
+            if (!File.Exists(saveFile))
+                File.Create(saveFile).Close();
+            else
+                ReadHighScoreFile();
+
+            // display the highscores on the scoreboard
+            DisplayHighscoreBoard();
 
         }
 
@@ -78,6 +91,12 @@ namespace NumberGuessingGame
                 // clear guess textbox and disable hte play button
                 txtGuess.Clear();
                 btnPlay.Enabled = false;
+
+                // determine if player has made a new highscore
+                DetermineAttemptIsHighscore(int.Parse(lblAttempts.Text));
+
+                // update the highscore leaderboard
+                DisplayHighscoreBoard();
             }
         }
 
@@ -99,6 +118,16 @@ namespace NumberGuessingGame
             // reset variables
             hasWon = false;
             numOfAttempts = 0;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            rtbOut.Clear();
+            rtbOut.Text += "Saving High Scores...\n";
+
+            WriteHighScoreFile();
+
+            rtbOut.Text += "High Scores have been saved\n";
         }
 
         /********************  User-Defined Functions  ********************/
@@ -143,23 +172,50 @@ namespace NumberGuessingGame
             }
         }
 
+        private void DetermineAttemptIsHighscore(int guessAttempt)
+        {
+            // get the current highscore for the selected level
+            int currentHighScore = highScores[(int)nudLevel.Value - 1];
+            int newHighScore = 0;
+
+            if (currentHighScore != 0)
+            {
+                // check to see if the guessAttempt is lower than our current highscore
+                if (guessAttempt < currentHighScore)
+                    newHighScore = guessAttempt;
+                else
+                    newHighScore = currentHighScore;
+            } else
+            {
+                newHighScore = guessAttempt;
+            }
+
+            highScores[(int)nudLevel.Value - 1] = newHighScore;
+        }
+
         private void DisplayHighscoreBoard()
         {
             rtbScores.Clear();
 
             // show the current high scores
             rtbScores.Text = $"{this.Text} Highscore Board\n";
-            rtbScores.Text += "Difficulty Level\t\tScore\n";
-            rtbScores.Text += "------------------------------------\n";
+            rtbScores.Text += "Difficulty Level\t\t\tScore\n";
+            rtbScores.Text += "------------------------------------------------------------\n";
 
             // display the highscores within the richtextbox scores
-            for (int i = 1; i <= highScores.Length; i++)
+            string? levelFormat;
+            for (int i = 1; i <= highScores.Length - 1; i++)
             {
-                string levelFormat = $"Level {i}:";
+                levelFormat = $"Level {i}:";
                 if (highScores[i - 1] != 0)
-                    rtbScores.Text += $"{levelFormat.PadRight(45)} {highScores[i - 1]}\n";
-                else rtbScores.Text += $"{levelFormat.PadRight(45)} -\n";
+                    rtbScores.Text += $"{levelFormat.PadRight(62)} {highScores[i - 1]}\n";
+                else rtbScores.Text += $"{levelFormat.PadRight(62)} -\n";
             }
+
+            levelFormat = $"Level 10:";
+            if (highScores[9] != 0)
+                rtbScores.Text += $"{levelFormat.PadRight(44)} {highScores[9]}\n";
+            else rtbScores.Text += $"{levelFormat.PadRight(44)} -\n";
         }
 
         private void ReadHighScoreFile()
@@ -174,7 +230,7 @@ namespace NumberGuessingGame
                     int index = line.IndexOf(':');
 
                     if (index != -1)
-                        highScores[count] = int.Parse(line.Substring(index + 2, line.Length - index + 2));
+                        highScores[count-1] = int.Parse(line.Substring(index + 2, line.Length - index - 2));
 
                     count++;
                 }
@@ -188,7 +244,7 @@ namespace NumberGuessingGame
                 writer.WriteLine("Guess Roulette High Scores");
 
                 for (int i = 0; i < highScores.Length; i++)
-                    writer.WriteLine($"Level {i+1}: {highScores[i]}");
+                    writer.WriteLine($"Level {i + 1}: {highScores[i]}");
             }
         }
     }
