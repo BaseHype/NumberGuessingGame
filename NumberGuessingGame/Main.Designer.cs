@@ -47,10 +47,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("HP Simplified Hans", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(20, 25);
             label1.Name = "label1";
-            label1.Size = new Size(40, 14);
+            label1.Size = new Size(43, 16);
             label1.TabIndex = 0;
             label1.Text = "Level:";
             // 
@@ -61,7 +61,7 @@
             nudLevel.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudLevel.Name = "nudLevel";
-            nudLevel.Size = new Size(50, 22);
+            nudLevel.Size = new Size(55, 22);
             nudLevel.TabIndex = 1;
             nudLevel.TextAlign = HorizontalAlignment.Right;
             nudLevel.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -83,6 +83,7 @@
             btnLevelSelect.FlatAppearance.BorderColor = Color.Gray;
             btnLevelSelect.FlatAppearance.MouseDownBackColor = Color.LightGreen;
             btnLevelSelect.FlatAppearance.MouseOverBackColor = Color.LightGray;
+            btnLevelSelect.FlatStyle = FlatStyle.Popup;
             btnLevelSelect.Location = new Point(180, 20);
             btnLevelSelect.Name = "btnLevelSelect";
             btnLevelSelect.Size = new Size(75, 25);
@@ -96,7 +97,7 @@
             lblGuess.AutoSize = true;
             lblGuess.Location = new Point(20, 60);
             lblGuess.Name = "lblGuess";
-            lblGuess.Size = new Size(44, 14);
+            lblGuess.Size = new Size(49, 16);
             lblGuess.TabIndex = 4;
             lblGuess.Text = "Guess:";
             // 
@@ -106,6 +107,7 @@
             txtGuess.Name = "txtGuess";
             txtGuess.Size = new Size(55, 22);
             txtGuess.TabIndex = 5;
+            txtGuess.TextAlign = HorizontalAlignment.Center;
             // 
             // btnPlay
             // 
@@ -113,6 +115,7 @@
             btnPlay.FlatAppearance.BorderColor = Color.Gray;
             btnPlay.FlatAppearance.MouseDownBackColor = Color.LightGreen;
             btnPlay.FlatAppearance.MouseOverBackColor = Color.LightGray;
+            btnPlay.FlatStyle = FlatStyle.Popup;
             btnPlay.Location = new Point(180, 55);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(75, 25);
@@ -138,7 +141,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(180, 100);
             label3.Name = "label3";
-            label3.Size = new Size(63, 14);
+            label3.Size = new Size(62, 16);
             label3.TabIndex = 9;
             label3.Text = "Attempts:";
             // 
@@ -147,7 +150,7 @@
             lblAttempts.AutoSize = true;
             lblAttempts.Location = new Point(250, 100);
             lblAttempts.Name = "lblAttempts";
-            lblAttempts.Size = new Size(0, 14);
+            lblAttempts.Size = new Size(0, 16);
             lblAttempts.TabIndex = 10;
             // 
             // btnNewGame
@@ -183,7 +186,7 @@
             // 
             // Main
             // 
-            AutoScaleDimensions = new SizeF(7F, 14F);
+            AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(609, 266);
             Controls.Add(rtbOut);
@@ -199,7 +202,7 @@
             Controls.Add(cbxSelected);
             Controls.Add(nudLevel);
             Controls.Add(label1);
-            Font = new Font("HP Simplified Hans", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             MaximizeBox = false;
             Name = "Main";
             Text = "Guess Roulette";
