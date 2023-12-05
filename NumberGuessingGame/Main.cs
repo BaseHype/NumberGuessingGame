@@ -91,6 +91,12 @@ namespace NumberGuessingGame
                 // clear guess textbox and disable hte play button
                 txtGuess.Clear();
                 btnPlay.Enabled = false;
+
+                // determine if player has made a new highscore
+                DetermineAttemptIsHighscore(int.Parse(lblAttempts.Text));
+
+                // update the highscore leaderboard
+                DisplayHighscoreBoard();
             }
         }
 
@@ -117,11 +123,11 @@ namespace NumberGuessingGame
         private void btnSave_Click(object sender, EventArgs e)
         {
             rtbOut.Clear();
-            rtbOut.Text += "Saving High Scores...";
+            rtbOut.Text += "Saving High Scores...\n";
 
             WriteHighScoreFile();
 
-            rtbOut.Text += "High Scores have been saved";
+            rtbOut.Text += "High Scores have been saved\n";
         }
 
         /********************  User-Defined Functions  ********************/
@@ -166,6 +172,27 @@ namespace NumberGuessingGame
             }
         }
 
+        private void DetermineAttemptIsHighscore(int guessAttempt)
+        {
+            // get the current highscore for the selected level
+            int currentHighScore = highScores[(int)nudLevel.Value - 1];
+            int newHighScore = 0;
+
+            if (currentHighScore != 0)
+            {
+                // check to see if the guessAttempt is lower than our current highscore
+                if (guessAttempt < currentHighScore)
+                    newHighScore = guessAttempt;
+                else
+                    newHighScore = currentHighScore;
+            } else
+            {
+                newHighScore = guessAttempt;
+            }
+
+            highScores[(int)nudLevel.Value - 1] = newHighScore;
+        }
+
         private void DisplayHighscoreBoard()
         {
             rtbScores.Clear();
@@ -203,7 +230,7 @@ namespace NumberGuessingGame
                     int index = line.IndexOf(':');
 
                     if (index != -1)
-                        highScores[count] = int.Parse(line.Substring(index + 2, line.Length - index + 2));
+                        highScores[count-1] = int.Parse(line.Substring(index + 2, line.Length - index - 2));
 
                     count++;
                 }
