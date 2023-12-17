@@ -9,7 +9,7 @@ The basic number guessing game beginner project for C# programmers improved into
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technology Used](#technology-used)
-- [Acknoledgements](#acknowledgements)
+- [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
 
 ## Description
