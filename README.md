@@ -14,7 +14,7 @@ The basic number guessing game beginner project for C# programmers improved into
 
 ## Description
 
-The project aimed to improve on a simple console application beginner C# project and turn it into a graphical text-based game. The goal is to apply the fundamentals of C# in creating a number-guessing console application and learning how to shift the application from a console to having a graphical user interface. The added bonus would be to handle the storage of the best results on the local machine's storage.
+The project aimed to improve on a simple console application beginner C# project and turn it into a graphical text-based game. The goal is to apply the fundamentals of C# in creating a number-guessing console application and learning how to shift the application from a console to having a graphical user interface. The bonus would be to handle the storage of the best results on the local machine's storage.
 
 ## Features
 
@@ -35,7 +35,7 @@ To run the project locally, follow these steps:
 
 ## Usage
 
-Once the application is running, select your desired level of difficult. A range will then be given and a number selected. Attempt to guess the generate number in the least amount of attempts. If your attempt is less than any previous attempt it will be added to the leaderboard. Make sure to save to keep record of your scores.
+Once the application is running, select your desired level of difficulty. A range will then be given and a number selected. Attempt to guess the generated number in the least amount of attempts. If your attempt is less than any previous attempt it will be added to the leaderboard. Could you make sure to save to keep a record of your scores?
 
 ## Technology Used
 
